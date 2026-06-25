@@ -22,8 +22,9 @@ WORKFLOW
 7.Flask API for prediction
 8.Streamlit UI for user interaction
 
-Algorithm: Random Forest Classifier
-Output: Loan Approved(1) / Loan Rejected(0)
+ALGORITHM: Random Forest Classifier
+
+OUTPUT: Loan Approved(1) / Loan Rejected(0)
 
 How to Run:
 1.Run app.py
