@@ -1,8 +1,13 @@
 from flask import Flask,request,jsonify
 import joblib
+import os
 import numpy as np
 app=Flask(__name__)
-model=joblib.load(r"C:\Users\Sneha\Desktop\Loan_Prediction_Project\Notebooks\model.pkl")
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "Notebooks", "model.pkl")
+model = joblib.load(MODEL_PATH)
+
 @app.route("/")
 def home():
     return "Loan Prediction API Running"

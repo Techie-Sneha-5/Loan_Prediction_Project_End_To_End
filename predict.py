@@ -1,10 +1,16 @@
 import joblib
+import os
 import sys
 import sklearn
 import pandas as pd
 print(sys.executable)
 print(sklearn.__version__)
-model=joblib.load(r"C:\Users\Sneha\Desktop\Loan_Prediction_Project\Notebooks\model.pkl")
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "Notebooks", "model.pkl")
+
+model = joblib.load(MODEL_PATH)
+
 sample=pd.DataFrame({
     "Gender":[1],
     "Married":[0],
