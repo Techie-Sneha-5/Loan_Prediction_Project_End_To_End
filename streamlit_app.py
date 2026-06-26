@@ -19,12 +19,21 @@ Property_Area=st.selectbox("Property_Area(0=Rural,1=Semiurban,2=Urban)",[0,1,2])
 
 if st.button("Predict Loan Status"):
     features=[Gender,Married,Dependents,Education,Self_Employed,ApplicantIncome,CoapplicantIncome,LoanAmount,Loan_Amount_Term,Credit_History,Property_Area]
-    response=requests.post("http://127.0.0.1:5000/predict",json={"features":features})
-    result=response.json()
-    st.write("RAW RESPONSE: ",result)
-    if result["prediction"]==1:
-        st.success("Loan Approved!!!")
-    elif result["prediction"]==0:
-        st.error("Loan Rejected")
-    else:
-        st.error("ERROR")    
+
+    try:
+        response=requests.post("https://loan-prediction-project-end-to-end.onrender.com/predict",json={"features":features},timeout=30)
+        st.write("Status Code:",response.status_code)
+        st.write("Response Text:",response.text)
+        result=response.json()
+        st.write("RAW RESPONSE: ",result)       
+        
+        if result["prediction"]==1:
+            st.success("Loan Approved!!!")
+        elif result["prediction"]==0:
+            st.error("Loan Rejected")
+        else:
+            st.error("ERROR")
+
+    except Exception as e:
+        st.error(f"Error: {e}")    
+        

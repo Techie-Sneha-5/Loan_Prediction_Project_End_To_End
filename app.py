@@ -11,7 +11,7 @@ model = joblib.load(MODEL_PATH)
 @app.route("/")
 def home():
     return "Loan Prediction API Running"
-@app.route('/predict',methods=['GET','POST'])
+@app.route('/predict',methods=['POST'])
 def predict():
     data=request.get_json()
     features=data['features']
